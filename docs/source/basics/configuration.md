@@ -4,8 +4,6 @@ Configuration uses the regular [Spring Boot configuration process](https://docs.
 This means you can provide configuration properties in multiple ways, e.g., via property files, environment variables, or command-line arguments.
 The following table lists some of the most important config properties to be used with FA³ST Registry.
 
-https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.typesafe-configuration-properties.relaxed-binding.environment-variables
-
 :::{note}
 When using environment variable make sure to follow the [naming scheme of Spring Boot](https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.typesafe-configuration-properties.relaxed-binding.environment-variables) which requires upper case and replacing `.` with `_`, e.g., to set the port use environment variable `SERVER_PORT`.
 :::

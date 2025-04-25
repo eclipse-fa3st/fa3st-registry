@@ -27,7 +27,7 @@
 ### As Gradle Dependency
 
 ```text
-implementation 'de.fraunhofer.iosb.ilt.faaast.registry:service:1.1.0-SNAPSHOT'
+implementation 'org.eclipse.digitaltwin.fa3st.registry:fa3st-registry:1.0.0-SNAPSHOT'
 ```
 
 ## Building from Source
