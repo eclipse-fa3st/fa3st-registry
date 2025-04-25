@@ -48,7 +48,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  */
 @RestController
 @RequestMapping("/api/v3.0/shell-descriptors")
-public class ShellRegistryController {
+public class ShellRegistryController extends BaseController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ShellRegistryController.class);
 
@@ -71,12 +71,12 @@ public class ShellRegistryController {
                                                             @RequestParam(name = "cursor", required = false) String cursor) {
         PagingInfo.Builder pageBuilder = PagingInfo.builder().cursor(cursor);
         if (limit != null) {
-            if (limit == 0) {
-                throw new BadRequestException("Limit must be greater than 0");
+            if (limit <= 0) {
+                throw new BadRequestException("limit must be > 0");
             }
             pageBuilder.limit(limit);
         }
-        return service.getAASs(assetType, assetKind, pageBuilder.build());
+        return service.getAASs(decodeBase64UrlId(assetType), assetKind, pageBuilder.build());
     }
 
 
@@ -89,7 +89,7 @@ public class ShellRegistryController {
      */
     @GetMapping(value = "/{aasIdentifier}")
     public AssetAdministrationShellDescriptor getAAS(@PathVariable("aasIdentifier") String aasIdentifier) throws ResourceNotFoundException {
-        return service.getAAS(aasIdentifier);
+        return service.getAAS(decodeBase64UrlId(aasIdentifier));
     }
 
 
@@ -126,7 +126,7 @@ public class ShellRegistryController {
     @DeleteMapping(value = "/{aasIdentifier}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("aasIdentifier") String aasIdentifier) throws ResourceNotFoundException {
-        service.deleteAAS(aasIdentifier);
+        service.deleteAAS(decodeBase64UrlId(aasIdentifier));
     }
 
 
@@ -143,7 +143,7 @@ public class ShellRegistryController {
     public AssetAdministrationShellDescriptor update(@PathVariable("aasIdentifier") String aasIdentifier,
                                                      @RequestBody AssetAdministrationShellDescriptor aas)
             throws ResourceNotFoundException {
-        return service.updateAAS(aasIdentifier, aas);
+        return service.updateAAS(decodeBase64UrlId(aasIdentifier), aas);
     }
 
 
@@ -163,12 +163,12 @@ public class ShellRegistryController {
             throws ResourceNotFoundException {
         PagingInfo.Builder pageBuilder = PagingInfo.builder().cursor(cursor);
         if (limit != null) {
-            if (limit == 0) {
-                throw new BadRequestException("Limit must be greater than 0");
+            if (limit <= 0) {
+                throw new BadRequestException("limit must be > 0");
             }
             pageBuilder.limit(limit);
         }
-        return service.getSubmodels(aasIdentifier, pageBuilder.build());
+        return service.getSubmodels(decodeBase64UrlId(aasIdentifier), pageBuilder.build());
     }
 
 
@@ -184,7 +184,7 @@ public class ShellRegistryController {
     public SubmodelDescriptor getSubmodelOfAAS(@PathVariable("aasIdentifier") String aasIdentifier,
                                                @PathVariable("submodelIdentifier") String submodelIdentifier)
             throws ResourceNotFoundException {
-        return service.getSubmodel(aasIdentifier, submodelIdentifier);
+        return service.getSubmodel(decodeBase64UrlId(aasIdentifier), decodeBase64UrlId(submodelIdentifier));
     }
 
 
@@ -202,7 +202,7 @@ public class ShellRegistryController {
                                                      @RequestBody SubmodelDescriptor submodel)
             throws ResourceNotFoundException, ResourceAlreadyExistsException {
         try {
-            SubmodelDescriptor descriptor = service.createSubmodel(aasIdentifier, submodel);
+            SubmodelDescriptor descriptor = service.createSubmodel(decodeBase64UrlId(aasIdentifier), submodel);
             URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest()
                     .path(String.format("/%s", EncodingHelper.base64UrlEncode(descriptor.getId())))
@@ -210,7 +210,7 @@ public class ShellRegistryController {
             return ResponseEntity.created(location).body(descriptor);
         }
         catch (ConstraintViolatedException e) {
-            logConstraintViolated("create Submodel", e.getMessage(), aasIdentifier, submodel);
+            logConstraintViolated("create Submodel", e.getMessage(), decodeBase64UrlId(aasIdentifier), submodel);
             throw new BadRequestException(e.getMessage());
         }
     }
@@ -232,7 +232,7 @@ public class ShellRegistryController {
                                                   @PathVariable("submodelIdentifier") String submodelIdentifier,
                                                   @RequestBody SubmodelDescriptor submodel)
             throws ResourceNotFoundException, ResourceAlreadyExistsException {
-        return service.updateSubmodel(aasIdentifier, submodelIdentifier, submodel);
+        return service.updateSubmodel(decodeBase64UrlId(aasIdentifier), decodeBase64UrlId(submodelIdentifier), submodel);
     }
 
 
@@ -248,7 +248,7 @@ public class ShellRegistryController {
     public void deleteSubmodelOfAAS(@PathVariable("aasIdentifier") String aasIdentifier,
                                     @PathVariable("submodelIdentifier") String submodelIdentifier)
             throws ResourceNotFoundException {
-        service.deleteSubmodel(aasIdentifier, submodelIdentifier);
+        service.deleteSubmodel(decodeBase64UrlId(aasIdentifier), decodeBase64UrlId(submodelIdentifier));
     }
 
 

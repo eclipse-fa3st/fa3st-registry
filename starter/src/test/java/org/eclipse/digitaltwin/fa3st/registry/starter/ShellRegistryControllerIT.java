@@ -87,6 +87,15 @@ public class ShellRegistryControllerIT {
 
 
     @Test
+    public void testGetAASByIdInvalid() {
+        ResponseEntity<Page<AssetAdministrationShellDescriptor>> response = restTemplate.exchange(
+                createURLWithPort("/invalid-base64url====="), HttpMethod.GET, null, new ParameterizedTypeReference<Page<AssetAdministrationShellDescriptor>>() {});
+        Assert.assertNotNull(response);
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+
+    @Test
     public void testCreateAas() {
         AssetAdministrationShellDescriptor expected = getAas();
         createAas(expected);

@@ -46,7 +46,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  */
 @RestController
 @RequestMapping(value = "/api/v3.0/submodel-descriptors")
-public class SubmodelRegistryController {
+public class SubmodelRegistryController extends BaseController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SubmodelRegistryController.class);
 
@@ -66,8 +66,8 @@ public class SubmodelRegistryController {
             throws ResourceNotFoundException {
         PagingInfo.Builder pageBuilder = PagingInfo.builder().cursor(cursor);
         if (limit != null) {
-            if (limit == 0) {
-                throw new BadRequestException("Limit must be greater than 0");
+            if (limit <= 0) {
+                throw new BadRequestException("limit must be > 0");
             }
             pageBuilder.limit(limit);
         }
@@ -84,7 +84,7 @@ public class SubmodelRegistryController {
      */
     @GetMapping(value = "/{submodelIdentifier}")
     public SubmodelDescriptor getSubmodel(@PathVariable("submodelIdentifier") String submodelIdentifier) throws ResourceNotFoundException {
-        return service.getSubmodel(submodelIdentifier);
+        return service.getSubmodel(decodeBase64UrlId(submodelIdentifier));
     }
 
 
@@ -126,7 +126,7 @@ public class SubmodelRegistryController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public SubmodelDescriptor update(@PathVariable("submodelIdentifier") String submodelIdentifier, @RequestBody SubmodelDescriptor submodel)
             throws ResourceNotFoundException, ResourceAlreadyExistsException {
-        return service.updateSubmodel(submodelIdentifier, submodel);
+        return service.updateSubmodel(decodeBase64UrlId(submodelIdentifier), submodel);
     }
 
 
@@ -139,7 +139,7 @@ public class SubmodelRegistryController {
     @DeleteMapping(value = "/{submodelIdentifier}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("submodelIdentifier") String submodelIdentifier) throws ResourceNotFoundException {
-        service.deleteSubmodel(submodelIdentifier);
+        service.deleteSubmodel(decodeBase64UrlId(submodelIdentifier));
     }
 
 
