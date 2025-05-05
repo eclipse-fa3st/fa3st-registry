@@ -5,6 +5,9 @@
 
 The Eclipse FA³ST Registry enables hosting a registry for Asset Administration Shells and Submodels.
 
+> [!TIP]
+> For more details on FA³ST Client see the [:blue_book: **full documenation**](https://fa3st-registry.readthedocs.io).
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions are **greatly appreciated**.
