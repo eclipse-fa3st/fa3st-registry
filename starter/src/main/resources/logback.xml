@@ -22,13 +22,13 @@
         </encoder>
     </appender>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <filter class="org.eclipse.digitaltwin.fa3st.registry.starter.logging.Fa3stFilter"/>
+        <filter class="org.eclipse.digitaltwin.fa3st.common.logging.Fa3stFilter"/>
         <encoder>
             <pattern>${PATTERN_STDOUT}</pattern>
         </encoder>
     </appender>
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <filter class="org.eclipse.digitaltwin.fa3st.registry.starter.logging.Fa3stFilter"/>
+        <filter class="org.eclipse.digitaltwin.fa3st.common.logging.Fa3stFilter"/>
         <file>${LOG_DIR}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- daily rollover -->

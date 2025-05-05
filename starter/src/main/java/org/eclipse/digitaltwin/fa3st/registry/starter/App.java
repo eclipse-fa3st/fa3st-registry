@@ -17,7 +17,7 @@ import static org.eclipse.digitaltwin.fa3st.registry.starter.App.APP_NAME;
 
 import ch.qos.logback.classic.Level;
 import java.io.PrintStream;
-import org.eclipse.digitaltwin.fa3st.registry.starter.logging.Fa3stFilter;
+import org.eclipse.digitaltwin.fa3st.common.logging.Fa3stFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner.Mode;

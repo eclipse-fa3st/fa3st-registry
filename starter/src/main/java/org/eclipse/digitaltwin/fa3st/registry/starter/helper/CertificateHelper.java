@@ -37,10 +37,9 @@ public class CertificateHelper {
     private static final CertificateInformation SELFSIGNED_CERTIFICATE_INFORMATION = CertificateInformation.builder()
             .applicationUri("urn:org:eclipse:digitaltwin:fa3st:registry:service")
             .commonName("FA³ST Registry Service")
-            .countryCode("DE")
-            .localityName("Karlsruhe")
-            .organization("Fraunhofer IOSB")
-            .organizationUnit("ILT")
+            .countryCode("BE")
+            .localityName("Brussels")
+            .organization("Eclipse FA3ST")
             .build();
 
     private CertificateHelper() {}

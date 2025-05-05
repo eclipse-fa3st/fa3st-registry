@@ -158,13 +158,13 @@ public class ShellRegistryControllerIT {
         Map<String, AssetAdministrationShellDescriptor> expectedMap = new HashMap<>();
         String assetType = "PageCursorTest";
         AssetAdministrationShellDescriptor aas1 = getAas();
-        aas1.setId("http://iosb.fraunhofer.de/IntegrationTest/PageCursor/AAS1");
+        aas1.setId("http://example.org/IntegrationTest/PageCursor/AAS1");
         aas1.setAssetType(assetType);
         createAas(aas1);
         expectedMap.put(aas1.getId(), aas1);
 
         AssetAdministrationShellDescriptor aas2 = getAas();
-        aas2.setId("http://iosb.fraunhofer.de/IntegrationTest/PageCursor/AAS2");
+        aas2.setId("http://example.org/IntegrationTest/PageCursor/AAS2");
         aas2.setAssetType(assetType);
         createAas(aas2);
         expectedMap.put(aas2.getId(), aas2);
@@ -249,7 +249,7 @@ public class ShellRegistryControllerIT {
     @Test
     public void testAddInvalidSubmodel() {
         AssetAdministrationShellDescriptor aas = getAas();
-        aas.setId("http://iosb.fraunhofer.de/IntegrationTest/Invalid/AAS1");
+        aas.setId("http://example.org/IntegrationTest/Invalid/AAS1");
         createAas(aas);
 
         HttpEntity<SubmodelDescriptor> entity = new HttpEntity<>(getSubmodelInvalid());
@@ -325,7 +325,7 @@ public class ShellRegistryControllerIT {
     private static AssetAdministrationShellDescriptor getAas() {
         return new DefaultAssetAdministrationShellDescriptor.Builder()
                 .idShort("IntegrationTest99")
-                .id("http://iosb.fraunhofer.de/IntegrationTest/AAS99")
+                .id("http://example.org/IntegrationTest/AAS99")
                 .displayName(new DefaultLangStringNameType.Builder().text("Integration Test 99 Name").language("de-DE").build())
                 .description(new DefaultLangStringTextType.Builder()
                         .language("en-US")
@@ -335,7 +335,7 @@ public class ShellRegistryControllerIT {
                         .language("de-DE")
                         .text("AAS 99 Integrationstest")
                         .build())
-                .globalAssetId("http://iosb.fraunhofer.de/GlobalAssetId/IntegrationTest99")
+                .globalAssetId("http://example.org/GlobalAssetId/IntegrationTest99")
                 .assetType("AssetType99")
                 .assetKind(AssetKind.INSTANCE)
                 .administration(new DefaultAdministrativeInformation.Builder()
@@ -353,7 +353,7 @@ public class ShellRegistryControllerIT {
                                         .type(ReferenceTypes.EXTERNAL_REFERENCE)
                                         .keys(new DefaultKey.Builder()
                                                 .type(KeyTypes.GLOBAL_REFERENCE)
-                                                .value("http://iosb.fraunhofer.de/IntegrationTest/AAS99/DataSpecificationIEC61360")
+                                                .value("http://example.org/IntegrationTest/AAS99/DataSpecificationIEC61360")
                                                 .build())
                                         .build())
                                 .dataSpecificationContent(new DefaultDataSpecificationIec61360.Builder()
@@ -372,31 +372,31 @@ public class ShellRegistryControllerIT {
                                         .unitId(new DefaultReference.Builder()
                                                 .keys(new DefaultKey.Builder()
                                                         .type(KeyTypes.GLOBAL_REFERENCE)
-                                                        .value("http://iosb.fraunhofer.de/IntegrationTest/Units/TestUnit")
+                                                        .value("http://example.org/IntegrationTest/Units/TestUnit")
                                                         .build())
                                                 .type(ReferenceTypes.EXTERNAL_REFERENCE)
                                                 .build())
-                                        .sourceOfDefinition("http://iosb.fraunhofer.de/IntegrationTest/AAS99/DataSpec/ExampleDef")
+                                        .sourceOfDefinition("http://example.org/IntegrationTest/AAS99/DataSpec/ExampleDef")
                                         .symbol("SU")
                                         .valueFormat("string")
                                         .value("TEST")
                                         .valueList(new DefaultValueList.Builder()
                                                 .valueReferencePairs(new DefaultValueReferencePair.Builder()
-                                                        .value("http://iosb.fraunhofer.de/IntegrationTest/ValueId/ExampleValueId")
+                                                        .value("http://example.org/IntegrationTest/ValueId/ExampleValueId")
                                                         .valueId(new DefaultReference.Builder()
                                                                 .keys(new DefaultKey.Builder()
                                                                         .type(KeyTypes.GLOBAL_REFERENCE)
-                                                                        .value("http://iosb.fraunhofer.de/IntegrationTest/ExampleValueId")
+                                                                        .value("http://example.org/IntegrationTest/ExampleValueId")
                                                                         .build())
                                                                 .type(ReferenceTypes.EXTERNAL_REFERENCE)
                                                                 .build())
                                                         .build())
                                                 .valueReferencePairs(new DefaultValueReferencePair.Builder()
-                                                        .value("http://iosb.fraunhofer.de/IntegrationTest/ValueId/ExampleValueId2")
+                                                        .value("http://example.org/IntegrationTest/ValueId/ExampleValueId2")
                                                         .valueId(new DefaultReference.Builder()
                                                                 .keys(new DefaultKey.Builder()
                                                                         .type(KeyTypes.GLOBAL_REFERENCE)
-                                                                        .value("http://iosb.fraunhofer.de/IntegrationTest/ValueId/ExampleValueId2")
+                                                                        .value("http://example.org/IntegrationTest/ValueId/ExampleValueId2")
                                                                         .build())
                                                                 .type(ReferenceTypes.EXTERNAL_REFERENCE)
                                                                 .build())
@@ -409,7 +409,7 @@ public class ShellRegistryControllerIT {
                         ._interface("http")
                         .protocolInformation(new DefaultProtocolInformation.Builder()
                                 .endpointProtocol("http")
-                                .href("http://iosb.fraunhofer.de/IntegrationTest/Endpoints/AAS99")
+                                .href("http://example.org/IntegrationTest/Endpoints/AAS99")
                                 .endpointProtocolVersion(List.of("2.1"))
                                 .subprotocol("https")
                                 .subprotocolBody("any body")
@@ -428,14 +428,14 @@ public class ShellRegistryControllerIT {
                                 .type(ReferenceTypes.EXTERNAL_REFERENCE)
                                 .keys(new DefaultKey.Builder()
                                         .type(KeyTypes.GLOBAL_REFERENCE)
-                                        .value("http://iosb.fraunhofer.de/IntegrationTest/Extension99/SemanticId1")
+                                        .value("http://example.org/IntegrationTest/Extension99/SemanticId1")
                                         .build())
                                 .build())
                         .refersTo(new DefaultReference.Builder()
                                 .type(ReferenceTypes.EXTERNAL_REFERENCE)
                                 .keys(new DefaultKey.Builder()
                                         .type(KeyTypes.GLOBAL_REFERENCE)
-                                        .value("http://iosb.fraunhofer.de/IntegrationTest/Extension99/RefersTo1")
+                                        .value("http://example.org/IntegrationTest/Extension99/RefersTo1")
                                         .build())
                                 .build())
                         .valueType(DataTypeDefXsd.STRING)
@@ -443,12 +443,12 @@ public class ShellRegistryControllerIT {
                                 .type(ReferenceTypes.EXTERNAL_REFERENCE)
                                 .keys(new DefaultKey.Builder()
                                         .type(KeyTypes.GLOBAL_REFERENCE)
-                                        .value("http://iosb.fraunhofer.de/IntegrationTest/Extension99/SupplementalSemanticId1")
+                                        .value("http://example.org/IntegrationTest/Extension99/SupplementalSemanticId1")
                                         .build())
                                 .build())
                         .build())
                 .submodelDescriptors(new DefaultSubmodelDescriptor.Builder()
-                        .id("http://iosb.fraunhofer.de/IntegrationTest/Submodel99-1")
+                        .id("http://example.org/IntegrationTest/Submodel99-1")
                         .idShort("Submodel-99-1")
                         .administration(new DefaultAdministrativeInformation.Builder()
                                 .version("1")
@@ -458,14 +458,14 @@ public class ShellRegistryControllerIT {
                                 .type(ReferenceTypes.EXTERNAL_REFERENCE)
                                 .keys(new DefaultKey.Builder()
                                         .type(KeyTypes.GLOBAL_REFERENCE)
-                                        .value("http://iosb.fraunhofer.de/IntegrationTest/Submodel99-1/SemanticId")
+                                        .value("http://example.org/IntegrationTest/Submodel99-1/SemanticId")
                                         .build())
                                 .build())
                         .endpoints(new DefaultEndpoint.Builder()
                                 ._interface("http")
                                 .protocolInformation(new DefaultProtocolInformation.Builder()
                                         .endpointProtocol("http")
-                                        .href("http://iosb.fraunhofer.de/Endpoints/Submodel99-1")
+                                        .href("http://example.org/Endpoints/Submodel99-1")
                                         .endpointProtocolVersion(List.of("2.0"))
                                         .build())
                                 .build())
@@ -477,9 +477,9 @@ public class ShellRegistryControllerIT {
     private static AssetAdministrationShellDescriptor getAasUpdate() {
         return new DefaultAssetAdministrationShellDescriptor.Builder()
                 .idShort("IntegrationTest100")
-                .id("http://iosb.fraunhofer.de/IntegrationTest/AAS100")
+                .id("http://example.org/IntegrationTest/AAS100")
                 .displayName(new DefaultLangStringNameType.Builder().text("Integration Test 100 Name aktualisiert").language("de-DE").build())
-                .globalAssetId("http://iosb.fraunhofer.de/GlobalAssetId/IntegrationTest100")
+                .globalAssetId("http://example.org/GlobalAssetId/IntegrationTest100")
                 .assetType("AssetType100")
                 .build();
     }
@@ -488,12 +488,12 @@ public class ShellRegistryControllerIT {
     private static AssetAdministrationShellDescriptor getAas101() {
         return new DefaultAssetAdministrationShellDescriptor.Builder()
                 .idShort("IntegrationTest99")
-                .id("http://iosb.fraunhofer.de/IntegrationTest/AAS101")
+                .id("http://example.org/IntegrationTest/AAS101")
                 .displayName(new DefaultLangStringNameType.Builder().text("Integration Test 101 Name").language("de-DE").build())
-                .globalAssetId("http://iosb.fraunhofer.de/GlobalAssetId/IntegrationTest101")
+                .globalAssetId("http://example.org/GlobalAssetId/IntegrationTest101")
                 .assetType("AssetType101")
                 .submodelDescriptors(new DefaultSubmodelDescriptor.Builder()
-                        .id("http://iosb.fraunhofer.de/IntegrationTest/Submodel101-1")
+                        .id("http://example.org/IntegrationTest/Submodel101-1")
                         .idShort("Submodel-101-1")
                         .administration(new DefaultAdministrativeInformation.Builder()
                                 .version("2")
@@ -503,7 +503,7 @@ public class ShellRegistryControllerIT {
                                 ._interface("http")
                                 .protocolInformation(new DefaultProtocolInformation.Builder()
                                         .endpointProtocol("http")
-                                        .href("http://iosb.fraunhofer.de/Endpoints/Submodel101-1")
+                                        .href("http://example.org/Endpoints/Submodel101-1")
                                         .endpointProtocolVersion(List.of("2.0"))
                                         .build())
                                 .build())
@@ -518,7 +518,7 @@ public class ShellRegistryControllerIT {
 
     private static SubmodelDescriptor getSubmodel2A() {
         return new DefaultSubmodelDescriptor.Builder()
-                .id("http://iosb.fraunhofer.de/IntegrationTest/Submodel101-2")
+                .id("http://example.org/IntegrationTest/Submodel101-2")
                 .idShort("Submodel-101-2")
                 .administration(new DefaultAdministrativeInformation.Builder()
                         .version("2")
@@ -529,7 +529,7 @@ public class ShellRegistryControllerIT {
                         ._interface("http")
                         .protocolInformation(new DefaultProtocolInformation.Builder()
                                 .endpointProtocol("http")
-                                .href("http://iosb.fraunhofer.de/Endpoints/Submodel101-2")
+                                .href("http://example.org/Endpoints/Submodel101-2")
                                 .endpointProtocolVersion(List.of("2.1"))
                                 .build())
                         .build())
@@ -549,7 +549,7 @@ public class ShellRegistryControllerIT {
         return new DefaultAssetAdministrationShellDescriptor.Builder()
                 .idShort("AasInvalid")
                 .displayName(new DefaultLangStringNameType.Builder().text("AAS Invalid Name").language("en-US").build())
-                .globalAssetId("http://iosb.fraunhofer.de/GlobalAssetId/AasInvalid")
+                .globalAssetId("http://example.org/GlobalAssetId/AasInvalid")
                 .assetType("AssetTypeInvalid")
                 .build();
     }
